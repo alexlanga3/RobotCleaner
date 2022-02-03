@@ -23,15 +23,15 @@ namespace RobotCleaner.ServiceLibrary.Tests
         [Fact]
         public void SaveParameters_CallsExternalMethodsMatch_WhenGivenInput()
         {
-            var movementsArray = new string[2] {"N","50"};
+            var movementsArray = new string[2] {"20","50"};
 
             mockUserService.Setup(x => x.SaveParameters(It.IsAny<Movements>()));
 
             //Act
-            userLibrary.SetMovements(movementsArray);
+            userLibrary.SetStartParameters(movementsArray);
 
             //Assert
-            mockUserService.Verify(x => x.SaveParameters(It.IsAny<Movements>()), Times.Once);
+            mockUserService.Verify(x => x.SaveMovements(It.IsAny<Coordinates>()), Times.Once);
 
         }
 
@@ -46,7 +46,7 @@ namespace RobotCleaner.ServiceLibrary.Tests
             userLibrary.SetMovements(movementsArray);
 
             //Assert
-            mockUserService.Verify(x => x.SaveMovements(It.IsAny<Coordinates>()), Times.Once);
+            mockUserService.Verify(x => x.SaveParameters(It.IsAny<Movements>()), Times.Once);
 
         }
     }
